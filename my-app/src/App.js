@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
+import logo from './tiff.svg';
 import './App.css';
 
 var discover_url = "https://api.themoviedb.org/3/discover/movie?api_key=041ff7fe3df8f5abf78dd2b4cd34912a&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=1&primary_release_year=2019&vote_count.gte=10" 
-var imgSrc = "https://image.tmdb.org/t/p/w500"
+var imgSrc = "https://image.tmdb.org/t/p/w400"
 class App extends Component {
   data = [];
   constructor(props) {
@@ -29,8 +30,8 @@ class App extends Component {
           console.log(result.results[0].title);
           console.log(Object.keys(result.results));
           console.log(Object.keys(result.results).length);
-          for (var i = 0; i < Object.keys(result.results).length; i++) {
-            this.data.push(imgSrc + result.results[i].backdrop_path);
+          for (let i = 0; i < Object.keys(result.results).length; i++) {
+            this.data.push(imgSrc + result.results[i].poster_path);
           }
 
           this.setState({
@@ -74,7 +75,7 @@ class App extends Component {
           </a>
           <button onClick={this.fetchData}>Useless Button</button>
         </header>
-        <body id="App-movies">
+        <div id="App-movies">
           {this.getImgUrl(0)}
           {this.getImgUrl(1)}
           {this.getImgUrl(2)}
@@ -89,7 +90,7 @@ class App extends Component {
           {this.getImgUrl(11)}
           {this.getImgUrl(12)}
           {this.getImgUrl(13)}
-        </body>
+        </div>
 
       </div>
     );
