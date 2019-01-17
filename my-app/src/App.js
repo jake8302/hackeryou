@@ -67,7 +67,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <a
             className="App-link"
-            href="https://www.themoviedb.org/settings/api"
+            href="https://developers.themoviedb.org/3/movies/get-movie-details"
             target="_blank"
             rel="noopener noreferrer"
           >
