@@ -3,9 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 
 var discover_url = "https://api.themoviedb.org/3/discover/movie?api_key=041ff7fe3df8f5abf78dd2b4cd34912a&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=1&primary_release_year=2019&vote_count.gte=10" 
-
+var imgSrc = "https://image.tmdb.org/t/p/w500"
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -15,10 +14,10 @@ class App extends Component {
     };
   }
 
- /* componentDidMount() {
+  componentDidMount() {
     // For initial data
     this.fetchData();
-  }*/
+  }
 
   fetchData = () => {
     fetch(discover_url)
@@ -27,6 +26,7 @@ class App extends Component {
         (result) => {
           console.log(result);
           console.log(result.results[0].title);
+          this.data = result.results[0].backdrop_path;
           this.setState({
             isLoaded: true,
             items: result.items
@@ -48,6 +48,10 @@ class App extends Component {
   buttonClick() {
     alert("pewpewpepwpewppwe");
   }
+
+  getImgUrl=()=> {
+    return (imgSrc + this.data);
+  }
   
   render() {
     return (
@@ -66,6 +70,7 @@ class App extends Component {
             API KEY
           </a>
           <button onClick={this.fetchData}>Useless Button</button>
+          <img src={this.getImgUrl()}></img>
         </header>
       </div>
     );
