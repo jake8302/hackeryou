@@ -5,6 +5,7 @@ import './App.css';
 var discover_url = "https://api.themoviedb.org/3/discover/movie?api_key=041ff7fe3df8f5abf78dd2b4cd34912a&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=1&primary_release_year=2019&vote_count.gte=10" 
 var imgSrc = "https://image.tmdb.org/t/p/w500"
 class App extends Component {
+  data = [];
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +27,12 @@ class App extends Component {
         (result) => {
           console.log(result);
           console.log(result.results[0].title);
-          this.data = result.results[0].backdrop_path;
+          console.log(Object.keys(result.results));
+          console.log(Object.keys(result.results).length);
+          for (var i = 0; i < Object.keys(result.results).length; i++) {
+            this.data.push(imgSrc + result.results[i].backdrop_path);
+          }
+
           this.setState({
             isLoaded: true,
             items: result.items
@@ -49,18 +55,15 @@ class App extends Component {
     alert("pewpewpepwpewppwe");
   }
 
-  getImgUrl=()=> {
-    return (imgSrc + this.data);
+  getImgUrl=(imageNum)=> {
+    return <img src={this.data[imageNum]}></img>;
   }
-  
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-              Hello World!
-          </p>
           <a
             className="App-link"
             href="https://www.themoviedb.org/settings/api"
@@ -70,8 +73,24 @@ class App extends Component {
             API KEY
           </a>
           <button onClick={this.fetchData}>Useless Button</button>
-          <img src={this.getImgUrl()}></img>
         </header>
+        <body id="App-movies">
+          {this.getImgUrl(0)}
+          {this.getImgUrl(1)}
+          {this.getImgUrl(2)}
+          {this.getImgUrl(3)}
+          {this.getImgUrl(4)}
+          {this.getImgUrl(5)}
+          {this.getImgUrl(6)}
+          {this.getImgUrl(7)}
+          {this.getImgUrl(8)}
+          {this.getImgUrl(9)}
+          {this.getImgUrl(10)}
+          {this.getImgUrl(11)}
+          {this.getImgUrl(12)}
+          {this.getImgUrl(13)}
+        </body>
+
       </div>
     );
   }
