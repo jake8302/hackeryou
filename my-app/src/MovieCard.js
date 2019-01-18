@@ -4,7 +4,6 @@ import Flippy, { FrontSide, BackSide } from 'react-flippy';
 class MovieCard extends React.Component {
   render() {
     return (
-    <td>
     <Flippy
       flipOnHover={false} // default false
       flipOnClick={true} // default false
@@ -20,7 +19,7 @@ class MovieCard extends React.Component {
         }}*/
       >
         {this.props.img}
-        {this.props.title}
+        <h3>{this.props.title}</h3>
       </FrontSide>
       <BackSide
         /*style={{ backgroundColor: '#175852'}}*/>
@@ -31,7 +30,6 @@ class MovieCard extends React.Component {
 
       </BackSide>
     </Flippy>
-    </td>
     )
   }
 }

@@ -76,23 +76,25 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <table className="titleBar">
-          <tbody>
-            <tr>
-              <td>
-                <img height="50vmin" src={logo}></img>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <nav>
+          <div className="titleBar">
+            <img height="50vmin" src={logo}></img>
+          </div>         
+          <ul>
+            <li>Festivals</li>
+            <li>Festivals</li>
+            <li>Festivals</li>
+            <li>Festivals</li>
+            <li>Festivals</li>
+            <li>Festivals</li>
+          </ul>
+        </nav>
         <div className="title">
-          <h1>Latest Release From 2019!</h1>
+            <h1>Latest Release From 2019!</h1>
         </div>
-        <table width="100%">
-        <tbody>
+        <div className="moviePoster">
           {this.moviePoster}
-        </tbody>
-        </table>
+        </div>
       </div>
     );
   }

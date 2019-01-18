@@ -20,7 +20,7 @@
 }
 
 .title {
-  font-family: roboto;
+  font-family: 'Roboto', sans-serif;
   font-size: 42px;
   font-weight:500;
   text-align: center;
@@ -30,6 +30,29 @@
   font-family: roboto;
   font-size: 19px;
   font-weight:400;
+}
+
+.moviePoster {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flippy-container {
+  margin: 10px;
+}
+
+ul {
+  width: 80%;
+  display: flex;
+  list-style-type: none;
+  font-size: 22px;
+  justify-content: space-around;
+}
+
+nav {
+  margin: 3%;
+  display: flex;
 }
 
 /*.moviesBody {
