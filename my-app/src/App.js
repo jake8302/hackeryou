@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import logo from './tiff.svg';
 import './App.css';
+import MovieCard from './MovieCard.js'
 
-var imgSrc = "https://image.tmdb.org/t/p/w400"
 class App extends Component {
   constructor(props) {
     super(props);
+    this.testingStuff = []
     this.movieInfo = {
       title: [],
       poster_path: []
@@ -32,20 +33,31 @@ class App extends Component {
           const movie = result.results;
           var movieRows = [];
           movie.forEach(movie => {
-            movie.poster_src = "https://image.tmdb.org/t/p/w400" + movie.poster_path;
-            const movieRow = <img src={movie.poster_src} hspace="20" vspace="20"></img>;
-            movieRows.push(movieRow);
             const testUrl = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=041ff7fe3df8f5abf78dd2b4cd34912a&language=en-US`;
             fetch(testUrl)
             .then(res => res.json()
             .then(
-              (result) => {
-                console.log(result.overview);
+              (movie) => {
+                //console.log(result.overview);
+                movie.poster_src = "https://image.tmdb.org/t/p/w400" + movie.poster_path;
+                const testCard = <MovieCard 
+                  img={<img src={movie.poster_src} alt={movie.title}></img>} 
+                  title={<p>{movie.title}</p>}
+                  overview={<p>{movie.overview}</p>}
+                  tagline={<p>{movie.tagline}</p>}
+                  runtime={<p>{movie.runtime}</p>}
+                ></MovieCard>
+                movieRows.push(testCard);
+                this.setState({
+                  isLoaded: true,
+                });
               }
             ));
           });
           this.moviePoster = movieRows;
           console.log(this.movieInfo);
+          /*const test = <CardExample></CardExample>
+          this.testingStuff = test;*/
           this.setState({
             isLoaded: true,
           });
@@ -76,9 +88,11 @@ class App extends Component {
         <div className="title">
           <h1>Latest Release From 2019!</h1>
         </div>
-        <div className="moviesBody">
+        <table width="100%">
+        <tbody>
           {this.moviePoster}
-        </div>
+        </tbody>
+        </table>
       </div>
     );
   }
