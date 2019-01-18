@@ -78,7 +78,7 @@ class App extends Component {
       <div className="App">
         <nav>
           <div className="titleBar">
-            <img height="50vmin" src={logo}></img>
+            <img height="50vmin" src={logo} alt=""></img>
           </div>         
           <ul>
             <li>Festivals</li>
