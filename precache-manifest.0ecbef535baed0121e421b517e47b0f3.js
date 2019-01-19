@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/hackyou/static/css/1.be709a21.chunk.css"
   },
   {
-    "revision": "85bbadec4993352189e04ac74fa6964f",
+    "revision": "017738c9ab684c1cc5bd60cb70133e90",
     "url": "/hackyou/index.html"
   }
 ];
