@@ -26,12 +26,6 @@
   text-align: center;
 }
 
-.bodyText {
-  font-family: roboto;
-  font-size: 19px;
-  font-weight:400;
-}
-
 .moviePoster {
   display: inline-flex;
   flex-wrap: wrap;

@@ -1,35 +1,34 @@
 import React from 'react';
 import Flippy, { FrontSide, BackSide } from 'react-flippy';
+import './MovieCard.css'
 
 class MovieCard extends React.Component {
 
   render() {
     return (
     <Flippy
-      flipOnHover={false} // default false
-      flipOnClick={true} // default false
-      flipDirection="horizontal" // horizontal or vertical
-      ref={(r) => this.flippy = r} // to use toggle method like this.flippy.toggle()
-      // if you pass isFlipped prop component will be controlled component.
-      // and other props, which will go to div
-      style={{ width: '440px', height: '720px' }} /// these are optional style, it is not necessary
+      flipOnHover={false}
+      flipOnClick={true}
+      flipDirection="horizontal"
+      ref={(r) => this.flippy = r}
+      style={{ width: '430px', height: '740px' }}
     >
       <FrontSide
-        /*style={{
-          backgroundColor: '#41669d',
-        }}*/
       >
         <img src={this.props.img} alt={this.props.title}></img>
+       <div className="movieCardDetails">
         <h3>{this.props.title}</h3>
         <h4>Release Date: {this.props.releaseDate}</h4>
-      </FrontSide>
-      <BackSide
-        /*style={{ backgroundColor: '#175852'}}*/>
-        {<p>Overview: {this.props.overview || "Not Available" }</p>}
-        {<p>Tageline: {this.props.tagline || "Not Available"}</p>}
-        {<p>Genres: {this.props.genres}</p>}
-        {<p>Runtime: {this.props.runtime || "Not Available"}</p>}
+       </div>
 
+      </FrontSide>
+      <BackSide>
+        <div className="movieCardDetails">
+          {<p><b>Overview: </b>{this.props.overview || <i>Not Available</i>}</p>}
+          {<p><b>Tageline: </b>{this.props.tagline || <i>Not Available</i>}</p>}
+          {<p><b>Genres: </b>{this.props.genres || <i>Not Available</i>}</p>}
+          {<p><b>Runtime: </b>{this.props.runtime || <i>Not Available</i>}</p>}
+        </div>
       </BackSide>
     </Flippy>
     )
