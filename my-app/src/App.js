@@ -23,7 +23,7 @@ class App extends Component {
       .then(res => res.json())
       .then(
         (result) => {
-          console.log(result.results);
+          //console.log(result.results);
           const movies = result.results;
           movies.forEach(movie => {
             const movieDetailsUrl = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=041ff7fe3df8f5abf78dd2b4cd34912a&language=en-US`;
@@ -36,7 +36,7 @@ class App extends Component {
                 movie.genres.forEach(genres=>{
                   genresArry.push(genres.name);
                 })
-                console.log(genresArry);
+                //console.log(genresArry);
                 const movieCard = <MovieCard key={movie.id} 
                   releaseDate = {movie.release_date}
                   img={movie.poster_src} 
@@ -64,21 +64,19 @@ class App extends Component {
   }
 
   render() {
-
+    this.state.movieCards.sort(function compare(a,b) {
+      if (a.props.releaseDate < b.props.releaseDate)
+        return 1;
+      if (a.props.releaseDate > b.props.releaseDate)
+        return -1;
+      return 0;
+    });
     return (
       <div className="App">
         <nav>
           <div className="titleBar">
             <img height="50vmin" src={logo} alt=""></img>
-          </div>         
-          <ul>
-            <li>Festivals</li>
-            <li>Festivals</li>
-            <li>Festivals</li>
-            <li>Festivals</li>
-            <li>Festivals</li>
-            <li>Festivals</li>
-          </ul>
+          </div>
         </nav>
         <div className="title">
             <h1>Latest Release From 2019!</h1>
