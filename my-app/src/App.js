@@ -6,17 +6,11 @@ import MovieCard from './MovieCard.js'
 class App extends Component {
   constructor(props) {
     super(props);
-    this.testingStuff = []
-    this.movieInfo = {
-      title: [],
-      poster_path: []
-    }
     this.state = {
       error: null,
       isLoaded: false,
+      movieCards: []
     };
-
-    this.moviePoster = []
   }
 
   componentDidMount() {
@@ -30,36 +24,28 @@ class App extends Component {
       .then(
         (result) => {
           console.log(result.results);
-          const movie = result.results;
-          var movieRows = [];
-          movie.forEach(movie => {
-            const testUrl = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=041ff7fe3df8f5abf78dd2b4cd34912a&language=en-US`;
-            fetch(testUrl)
+          const movies = result.results;
+          movies.forEach(movie => {
+            const movieDetailsUrl = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=041ff7fe3df8f5abf78dd2b4cd34912a&language=en-US`;
+            fetch(movieDetailsUrl)
             .then(res => res.json()
             .then(
               (movie) => {
-                //console.log(result.overview);
                 movie.poster_src = "https://image.tmdb.org/t/p/w400" + movie.poster_path;
-                const testCard = <MovieCard 
-                  img={<img src={movie.poster_src} alt={movie.title}></img>} 
-                  title={<p>{movie.title}</p>}
-                  overview={<p>{movie.overview}</p>}
-                  tagline={<p>{movie.tagline}</p>}
-                  runtime={<p>{movie.runtime}</p>}
+                const movieCard = <MovieCard key={movie.id} 
+                  releaseDate = {movie.release_date}
+                  img={movie.poster_src} 
+                  title={movie.title}
+                  overview={movie.overview}
+                  tagline={movie.tagline}
+                  runtime={movie.runtime}
                 ></MovieCard>
-                movieRows.push(testCard);
                 this.setState({
                   isLoaded: true,
+                  movieCards:[...this.state.movieCards, movieCard]
                 });
               }
             ));
-          });
-          this.moviePoster = movieRows;
-          console.log(this.movieInfo);
-          /*const test = <CardExample></CardExample>
-          this.testingStuff = test;*/
-          this.setState({
-            isLoaded: true,
           });
         },
         (error) => {
@@ -69,11 +55,10 @@ class App extends Component {
           });
         }
       )
-
   }
-  
 
   render() {
+
     return (
       <div className="App">
         <nav>
@@ -93,7 +78,7 @@ class App extends Component {
             <h1>Latest Release From 2019!</h1>
         </div>
         <div className="moviePoster">
-          {this.moviePoster}
+          {this.state.movieCards}
         </div>
       </div>
     );
