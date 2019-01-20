@@ -25,10 +25,10 @@ class MovieCard extends React.Component {
       </FrontSide>
       <BackSide
         /*style={{ backgroundColor: '#175852'}}*/>
-        {<p>{this.props.overview}</p>}
-        {<p>{this.props.tagline}</p>}
-        {<p>{this.props.genres}</p>}
-        {<p>{this.props.runtime}</p>}
+        {<p>Overview: {this.props.overview || "Not Available" }</p>}
+        {<p>Tageline: {this.props.tagline || "Not Available"}</p>}
+        {<p>Genres: {this.props.genres}</p>}
+        {<p>Runtime: {this.props.runtime || "Not Available"}</p>}
 
       </BackSide>
     </Flippy>

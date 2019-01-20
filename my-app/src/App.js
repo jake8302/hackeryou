@@ -32,12 +32,18 @@ class App extends Component {
             .then(
               (movie) => {
                 movie.poster_src = "https://image.tmdb.org/t/p/w400" + movie.poster_path;
+                const genresArry = [];
+                movie.genres.forEach(genres=>{
+                  genresArry.push(genres.name);
+                })
+                console.log(genresArry);
                 const movieCard = <MovieCard key={movie.id} 
                   releaseDate = {movie.release_date}
                   img={movie.poster_src} 
                   title={movie.title}
                   overview={movie.overview}
                   tagline={movie.tagline}
+                  genres={genresArry.join(', ')}
                   runtime={movie.runtime}
                 ></MovieCard>
                 this.setState({
