@@ -3,6 +3,8 @@ import logo from './tiff.svg';
 import './App.css';
 import MovieCard from './MovieCard.js'
 
+const API_KEY = process.env.REACT_APP_MOVIE_DB_API_KEY;
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -18,15 +20,14 @@ class App extends Component {
   }
 
   fetchData = () => {
-    const discoverUrl = "https://api.themoviedb.org/3/discover/movie?api_key=041ff7fe3df8f5abf78dd2b4cd34912a&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=1&primary_release_year=2019&vote_count.gte=10";
+    const discoverUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=1&primary_release_year=2019&vote_count.gte=10`;
     fetch(discoverUrl)
       .then(res => res.json())
       .then(
         (result) => {
-          //console.log(result.results);
           const movies = result.results;
           movies.forEach(movie => {
-            const movieDetailsUrl = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=041ff7fe3df8f5abf78dd2b4cd34912a&language=en-US`;
+            const movieDetailsUrl = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${API_KEY}&language=en-US`;
             fetch(movieDetailsUrl)
             .then(res => res.json()
             .then(
@@ -36,7 +37,6 @@ class App extends Component {
                 movie.genres.forEach(genres=>{
                   genresArry.push(genres.name);
                 })
-                //console.log(genresArry);
                 const movieCard = <MovieCard key={movie.id} 
                   releaseDate = {movie.release_date}
                   img={movie.poster_src} 
