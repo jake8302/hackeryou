@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/hackeryou/precache-manifest.a351b4b23b0b6ab4b70ace9440de3904.js"
+  "/hackeryou/precache-manifest.32bbdea793cbfb6750b99adeba69cf9c.js"
 );
 
 workbox.clientsClaim();
