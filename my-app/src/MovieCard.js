@@ -11,7 +11,7 @@ class MovieCard extends React.Component {
       flipOnClick={true}
       flipDirection="horizontal"
       ref={(r) => this.flippy = r}
-      style={{ width: '430px', height: '740px' }}
+      style={{ width: '430px', height: '750px' }}
     >
       <FrontSide
       >
